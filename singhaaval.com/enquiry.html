@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B2B Bulk Enquiry - SinghAaval Heritage</title>
+  <meta name="description" content="Request a bulk import quote. Fill out our commercial enquiry sheet for customized pricing, custom block-printing, and worldwide ocean/air freight.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/27948d4a9efb9ec994b60d3948b1edd2.jpg">
+</head>
+<body>
+
+  <!-- Global Header -->
+  <header class="header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="images/27948d4a9efb9ec994b60d3948b1edd2.jpg" alt="SinghAaval Heritage Logo" class="logo-img">
+          <div class="logo-text">
+            <span class="logo-title">SinghAaval</span>
+            <span class="logo-subtitle">Heritage &amp; Excellence</span>
+          </div>
+        </a>
+
+        <nav class="nav">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="products.html" class="nav-link">Products</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="enquiry.html" class="nav-link active">Enquiry</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="enquiry.html" class="btn btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.75rem;">Bulk Order</a>
+        </nav>
+
+        <div class="mobile-toggle">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu">
+    <div class="mobile-menu-close">
+      <i class="fa-solid fa-xmark"></i>
+    </div>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="enquiry.html">Enquiry</a>
+    <a href="contact.html">Contact</a>
+    <a href="enquiry.html" class="btn btn-primary" style="margin-top: var(--space-md);">Bulk Order</a>
+  </div>
+
+  <main style="padding-top: 140px;">
+    <section class="section">
+      <div class="container">
+        
+        <!-- Interactive Form Section -->
+        <div class="form-container">
+          <div class="form-title-area">
+            <span class="text-meta">Commercial Inquiry</span>
+            <h1 style="font-size: 2.5rem; margin-top: var(--space-xs); margin-bottom: var(--space-xs);">Start Bulk Order Quote</h1>
+            <p>Please enter your trade requirements below. Our commercial sales desk will compute customs, freight, and tax estimates and contact you within 24 hours.</p>
+          </div>
+
+          <form action="#" method="POST" id="b2b-form">
+            <div class="form-grid">
+              <!-- Name -->
+              <div>
+                <label class="form-label" for="full-name">Full Name</label>
+                <input class="form-input" type="text" id="full-name" name="name" required placeholder="e.g. John Doe">
+              </div>
+
+              <!-- Company -->
+              <div>
+                <label class="form-label" for="company-name">Company Name</label>
+                <input class="form-input" type="text" id="company-name" name="company" required placeholder="e.g. Heritage Imports Ltd">
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label class="form-label" for="work-email">Work Email</label>
+                <input class="form-input" type="email" id="work-email" name="email" required placeholder="name@company.com">
+              </div>
+
+              <!-- Phone -->
+              <div>
+                <label class="form-label" for="phone-number">WhatsApp / Phone Number</label>
+                <input class="form-input" type="tel" id="phone-number" name="phone" required placeholder="+1 (555) 000-0000">
+              </div>
+
+              <!-- Product Select -->
+              <div>
+                <label class="form-label" for="enquiry-product">Target Product Line</label>
+                <select class="form-input form-select" id="enquiry-product" name="product" required>
+                  <option value="" disabled selected>Select a product...</option>
+                  <option value="banjara-bag">Embroidered Banjara Bag (HS: 42022220)</option>
+                  <option value="jhola-bag">Green Embroidered Jhola Bag (HS: 42022220)</option>
+                  <option value="yellow-bag">Yellow Embroidered Bag (HS: 42022220)</option>
+                  <option value="wall-hanging">Patchwork Wall Hanging (HS: 63049210)</option>
+                  <option value="elephant-hanging">Elephant Wall Hanging (HS: 63049210)</option>
+                  <option value="red-tapestry">Red Patchwork Tapestry (HS: 63049210)</option>
+                  <option value="custom-craft">Bespoke Design / Custom Request</option>
+                </select>
+              </div>
+
+              <!-- Order Quantity -->
+              <div>
+                <label class="form-label" for="order-qty">Estimated Quantity</label>
+                <select class="form-input form-select" id="order-qty" name="quantity" required>
+                  <option value="" disabled selected>Select quantity scale...</option>
+                  <option value="trial">Trial Batch (20 - 50 units)</option>
+                  <option value="wholesale">Standard Wholesale (50 - 200 units)</option>
+                  <option value="container">Volume Container (200+ units)</option>
+                </select>
+              </div>
+
+              <!-- Country Destination -->
+              <div class="form-group-full">
+                <label class="form-label" for="destination">Delivery Destination Country</label>
+                <input class="form-input" type="text" id="destination" name="destination" required placeholder="e.g. Hamburg, Germany or New York, United States">
+              </div>
+
+              <!-- Message -->
+              <div class="form-group-full">
+                <label class="form-label" for="specifications">Detailed Specifications / Custom Sizing</label>
+                <textarea class="form-input" id="specifications" name="message" placeholder="Provide details like custom block prints, organic dye requirements, custom size guides, label stitchings, or shipping preferences..."></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.1rem;">
+              <span>Submit Request Quote</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>SinghAaval</h3>
+          <p>Carrying ancient narratives through handcrafted exports. Ethical, sustainable textiles from Ajmer, Rajasthan to the modern world.</p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://wa.me/918273664082" class="social-icon" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products Catalog</a></li>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="enquiry.html">B2B Enquiry</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h4>Contact &amp; Location</h4>
+          <ul class="footer-links">
+            <li><span style="color: rgba(255,255,255,0.6);"><i class="fa-solid fa-map-location-dot" style="margin-right: 8px;"></i> Singhaaval Village, Ajmer, Rajasthan, India</span></li>
+            <li><a href="mailto:info@singhaaval.com"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i> info@singhaaval.com</a></li>
+            <li><a href="https://wa.me/918273664082"><i class="fa-solid fa-phone" style="margin-right: 8px;"></i> +91 8273664082</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 SinghAaval Heritage. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/scripts.js"></script>
+</body>
+</html>
