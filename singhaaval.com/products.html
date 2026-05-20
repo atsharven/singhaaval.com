@@ -19,6 +19,48 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="images/27948d4a9efb9ec994b60d3948b1edd2.jpg">
+
+  <!-- B2B Products Graph Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Product",
+        "name": "Embroidered Banjara Bag",
+        "image": "https://singhaaval.com/images/5ebb64662decea6c25e7e3edf3c9f9cf.jpg",
+        "description": "Exquisite hand-embroidered bags featuring traditional Banjara mirrorwork and vintage textile patches.",
+        "category": "Bags & Pouches",
+        "offers": {
+          "@type": "AggregateOffer",
+          "priceCurrency": "USD",
+          "price": "Contact for bulk quotes"
+        }
+      },
+      {
+        "@type": "Product",
+        "name": "Green Embroidered Jhola Bag",
+        "image": "https://singhaaval.com/images/0a22ab97fdf50e6cb620c059aadbd80c.jpg",
+        "description": "Durable utility bag styled with intricate green block-print accents and traditional embroidery borders.",
+        "category": "Bags & Pouches"
+      },
+      {
+        "@type": "Product",
+        "name": "Yellow Embroidered Bag",
+        "image": "https://singhaaval.com/images/50a895e1c5814edf023d6558ed602e7c.jpg",
+        "description": "Bright yellow bag featuring detailed traditional embroidery borders and custom mirror accents.",
+        "category": "Bags & Pouches"
+      },
+      {
+        "@type": "Product",
+        "name": "Patchwork Wall Hanging",
+        "image": "https://singhaaval.com/images/0a1a0dc0ef8e8c07716355d7bedc8204.jpg",
+        "description": "Traditional patchwork tapestry handcrafted using vintage sarees, hand-embroidered patches, and sequins.",
+        "category": "Home Furnishings"
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -84,65 +126,102 @@
 
         <!-- Products Grid -->
         <div class="products-grid">
+          
           <!-- Product 1 -->
-          <article class="product-card" data-category="bags">
+          <article class="product-card" data-category="bags"
+                   data-title="Embroidered Banjara Bag"
+                   data-hs="HS 42022220"
+                   data-image="images/5ebb64662decea6c25e7e3edf3c9f9cf.jpg"
+                   data-material="Organic Handspun Cotton Canvas"
+                   data-sizes="42 cm x 35 cm x 12 cm"
+                   data-packaging="50 units per heavy-duty carton"
+                   data-desc="Exquisite shoulder bag detailed with traditional Banjara mirrorwork, metallic coin appliques, and hand-stitched borders. Features a strong zip lock and interior compartments."
+                   data-query="banjara-bag">
             <div class="product-image-container">
               <img src="images/5ebb64662decea6c25e7e3edf3c9f9cf.jpg" alt="Embroidered Banjara Bag">
               <span class="product-tag">Bags &amp; Pouches</span>
+              <button class="product-quick-view">Quick View</button>
             </div>
             <div class="product-details">
               <div class="product-meta-header">
                 <h3 class="product-title">Embroidered Banjara Bag</h3>
                 <span class="product-hs">HS 42022220</span>
               </div>
-              <p class="product-desc">Exquisite hand-embroidered bags featuring traditional Banjara mirrorwork, metallic coins, and colorful stitching.</p>
+              <p class="product-desc">Exquisite hand-embroidered bags featuring traditional Banjara mirrorwork and vintage textile patches.</p>
               <div class="product-actions">
-                <a href="enquiry.html?product=banjara-bag" class="btn btn-primary">Request Quote</a>
+                <a href="enquiry.html?product=banjara-bag" class="btn btn-secondary">Request Quote</a>
               </div>
             </div>
           </article>
 
           <!-- Product 2 -->
-          <article class="product-card" data-category="bags">
+          <article class="product-card" data-category="bags"
+                   data-title="Green Embroidered Jhola Bag"
+                   data-hs="HS 42022220"
+                   data-image="images/0a22ab97fdf50e6cb620c059aadbd80c.jpg"
+                   data-material="Handblock Khadi Cotton Canvas"
+                   data-sizes="38 cm x 40 cm"
+                   data-packaging="60 units per cargo block pack"
+                   data-desc="Spacious slouchy Jhola bag styled with organic ochre block prints, vintage Rajasthan embroidery panels, and dual reinforcement stitching."
+                   data-query="jhola-bag">
             <div class="product-image-container">
               <img src="images/0a22ab97fdf50e6cb620c059aadbd80c.jpg" alt="Green Embroidered Jhola Bag">
               <span class="product-tag">Bags &amp; Pouches</span>
+              <button class="product-quick-view">Quick View</button>
             </div>
             <div class="product-details">
               <div class="product-meta-header">
                 <h3 class="product-title">Green Embroidered Jhola Bag</h3>
                 <span class="product-hs">HS 42022220</span>
               </div>
-              <p class="product-desc">Spacious and durable hand-printed green Jhola bag with traditional floral embroidery and shoulder strap.</p>
+              <p class="product-desc">Durable utility bag styled with intricate green block-print accents and traditional embroidery borders.</p>
               <div class="product-actions">
-                <a href="enquiry.html?product=jhola-bag" class="btn btn-primary">Request Quote</a>
+                <a href="enquiry.html?product=jhola-bag" class="btn btn-secondary">Request Quote</a>
               </div>
             </div>
           </article>
 
           <!-- Product 3 -->
-          <article class="product-card" data-category="bags">
+          <article class="product-card" data-category="bags"
+                   data-title="Yellow Embroidered Shoulder Bag"
+                   data-hs="HS 42022220"
+                   data-image="images/50a895e1c5814edf023d6558ed602e7c.jpg"
+                   data-material="Premium Coarse Cotton Threadwork"
+                   data-sizes="35 cm x 30 cm"
+                   data-packaging="70 units per master carton"
+                   data-desc="Bright mustard yellow shoulder bag with high-density multi-colored cotton thread embroideries, mirror inserts, and decorative side tassels."
+                   data-query="yellow-bag">
             <div class="product-image-container">
               <img src="images/50a895e1c5814edf023d6558ed602e7c.jpg" alt="Yellow Embroidered Shoulder Bag">
               <span class="product-tag">Bags &amp; Pouches</span>
+              <button class="product-quick-view">Quick View</button>
             </div>
             <div class="product-details">
               <div class="product-meta-header">
                 <h3 class="product-title">Yellow Embroidered Bag</h3>
                 <span class="product-hs">HS 42022220</span>
               </div>
-              <p class="product-desc">Bright ochre-yellow shoulder bag featuring rich traditional embroidery borders and custom mirror accents.</p>
+              <p class="product-desc">Bright yellow bag featuring detailed traditional embroidery borders and custom mirror accents.</p>
               <div class="product-actions">
-                <a href="enquiry.html?product=yellow-bag" class="btn btn-primary">Request Quote</a>
+                <a href="enquiry.html?product=yellow-bag" class="btn btn-secondary">Request Quote</a>
               </div>
             </div>
           </article>
 
           <!-- Product 4 -->
-          <article class="product-card" data-category="furnishings">
+          <article class="product-card" data-category="furnishings"
+                   data-title="Patchwork Wall Hanging"
+                   data-hs="HS 63049210"
+                   data-image="images/0a1a0dc0ef8e8c07716355d7bedc8204.jpg"
+                   data-material="Upcycled Vintage Saree / Khadi Patches"
+                   data-sizes="100 cm x 150 cm"
+                   data-packaging="15 units per moisture-sealed bale"
+                   data-desc="Gorgeous wall tapestry assembled from wedding saree parts, heavy beadwork, and layered stitch backings. Complete hanging loops integrated."
+                   data-query="wall-hanging">
             <div class="product-image-container">
               <img src="images/0a1a0dc0ef8e8c07716355d7bedc8204.jpg" alt="Patchwork Wall Hanging">
               <span class="product-tag">Furnishings</span>
+              <button class="product-quick-view">Quick View</button>
             </div>
             <div class="product-details">
               <div class="product-meta-header">
@@ -151,16 +230,25 @@
               </div>
               <p class="product-desc">Traditional patchwork tapestry handcrafted using vintage sarees, hand-embroidered patches, and sequins.</p>
               <div class="product-actions">
-                <a href="enquiry.html?product=wall-hanging" class="btn btn-primary">Request Quote</a>
+                <a href="enquiry.html?product=wall-hanging" class="btn btn-secondary">Request Quote</a>
               </div>
             </div>
           </article>
 
           <!-- Product 5 -->
-          <article class="product-card" data-category="furnishings">
+          <article class="product-card" data-category="furnishings"
+                   data-title="Elephant Wall Hanging"
+                   data-hs="HS 63049210"
+                   data-image="images/d05692184cfdaf582e17e62f28b15afd.jpg"
+                   data-material="Loomed Cotton with Indigo Dye"
+                   data-sizes="90 cm x 90 cm"
+                   data-packaging="20 units per moisture-sealed bale"
+                   data-desc="Square decorative tapestry featuring a large handblock printed royal elephant in Rajasthan court style, flanked by classic floral block stamps."
+                   data-query="elephant-hanging">
             <div class="product-image-container">
               <img src="images/d05692184cfdaf582e17e62f28b15afd.jpg" alt="Elephant Wall Hanging">
               <span class="product-tag">Furnishings</span>
+              <button class="product-quick-view">Quick View</button>
             </div>
             <div class="product-details">
               <div class="product-meta-header">
@@ -169,16 +257,25 @@
               </div>
               <p class="product-desc">Detailed wall hanging decorated with handmade block prints and classic central elephant embroidery motif.</p>
               <div class="product-actions">
-                <a href="enquiry.html?product=elephant-hanging" class="btn btn-primary">Request Quote</a>
+                <a href="enquiry.html?product=elephant-hanging" class="btn btn-secondary">Request Quote</a>
               </div>
             </div>
           </article>
 
           <!-- Product 6 -->
-          <article class="product-card" data-category="furnishings">
+          <article class="product-card" data-category="furnishings"
+                   data-title="Red Patchwork Tapestry"
+                   data-hs="HS 63049210"
+                   data-image="images/e868f6ca5d385b41e5906ae1cf05a3a8.jpg"
+                   data-material="Upcycled Cotton &amp; Needlework Panels"
+                   data-sizes="120 cm x 180 cm"
+                   data-packaging="12 units per moisture-sealed bale"
+                   data-desc="Deep crimson red patchwork tapestry assembled in Ajmer village. Filled with dense needlework, small glass mirrors, and durable canvas margins."
+                   data-query="red-tapestry">
             <div class="product-image-container">
               <img src="images/e868f6ca5d385b41e5906ae1cf05a3a8.jpg" alt="Red Patchwork Wall Hanging">
               <span class="product-tag">Furnishings</span>
+              <button class="product-quick-view">Quick View</button>
             </div>
             <div class="product-details">
               <div class="product-meta-header">
@@ -187,7 +284,7 @@
               </div>
               <p class="product-desc">Vibrant red patchwork wall hanging assembled in small batches by women artisans in Ajmer village.</p>
               <div class="product-actions">
-                <a href="enquiry.html?product=red-tapestry" class="btn btn-primary">Request Quote</a>
+                <a href="enquiry.html?product=red-tapestry" class="btn btn-secondary">Request Quote</a>
               </div>
             </div>
           </article>
@@ -195,6 +292,9 @@
       </div>
     </section>
   </main>
+
+  <!-- Dynamic Modal Overlay Injection Target -->
+  <div id="product-modal" class="modal-overlay"></div>
 
   <!-- Global Footer -->
   <footer class="footer">

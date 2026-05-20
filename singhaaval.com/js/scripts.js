@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductFilter();
   initEnquiryPreFill();
   initSmoothScroll();
+  initHeroParallax();
+  initTestimonials();
+  initProductModal();
 });
 
 /**
@@ -162,5 +165,172 @@ function initSmoothScroll() {
         }
       }
     });
+  });
+}
+
+/**
+ * 7. GPU-Accelerated Parallax Scroll Effect on Hero Background
+ */
+function initHeroParallax() {
+  const heroImage = document.querySelector('.hero-image-wrap img');
+  if (!heroImage) return;
+
+  let ticking = false;
+
+  const updateParallax = () => {
+    const scrollY = window.scrollY;
+    // Limit calculations to visible hero area
+    if (scrollY <= window.innerHeight) {
+      const scale = 1 + scrollY * 0.0004;
+      const translateY = scrollY * 0.28;
+      heroImage.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`;
+    }
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+/**
+ * 8. Editorial Testimonials Carousel Selector
+ */
+function initTestimonials() {
+  const slides = document.querySelectorAll('.testimonial-slide');
+  const dots = document.querySelectorAll('.testimonial-dot');
+  
+  if (slides.length === 0) return;
+
+  let activeIndex = 0;
+  let intervalId;
+
+  const showSlide = (index) => {
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.add('active');
+        if (dots[i]) dots[i].classList.add('active');
+      } else {
+        slide.classList.remove('active');
+        if (dots[i]) dots[i].classList.remove('active');
+      }
+    });
+    activeIndex = index;
+  };
+
+  const nextSlide = () => {
+    const next = (activeIndex + 1) % slides.length;
+    showSlide(next);
+  };
+
+  // Start rotation
+  const startAutoplay = () => {
+    intervalId = setInterval(nextSlide, 6000);
+  };
+
+  const stopAutoplay = () => {
+    clearInterval(intervalId);
+  };
+
+  // Manual dot selectors
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      stopAutoplay();
+      showSlide(index);
+      startAutoplay();
+    });
+  });
+
+  // Init
+  showSlide(0);
+  startAutoplay();
+}
+
+/**
+ * 9. Product Quick View Modal Controller
+ * Reads specifications from product data-attributes, injects into modal body, opens overlay.
+ */
+function initProductModal() {
+  const overlay = document.getElementById('product-modal');
+  const quickViews = document.querySelectorAll('.product-quick-view');
+  
+  if (!overlay || quickViews.length === 0) return;
+
+  // Open Modal Handler
+  quickViews.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const card = btn.closest('.product-card');
+      if (!card) return;
+
+      // Extract specification details from card attributes
+      const title = card.getAttribute('data-title') || 'Product Details';
+      const hs = card.getAttribute('data-hs') || '';
+      const imageSrc = card.getAttribute('data-image') || '';
+      const material = card.getAttribute('data-material') || 'Cotton Canvas';
+      const sizes = card.getAttribute('data-sizes') || 'Various Sizes';
+      const packing = card.getAttribute('data-packaging') || 'Standard Carton';
+      const desc = card.getAttribute('data-desc') || '';
+      const queryParam = card.getAttribute('data-query') || '';
+
+      // Construct Modal HTML Markup
+      overlay.innerHTML = `
+        <div class="modal-card">
+          <div class="modal-close-btn" aria-label="Close Preview">&times;</div>
+          <div class="modal-content-grid">
+            <div class="modal-image-pane">
+              <img src="${imageSrc}" alt="${title}">
+            </div>
+            <div class="modal-info-pane">
+              <div>
+                <span class="text-meta">Specification Sheet</span>
+                <h2 style="font-size: 2rem; margin-top: var(--space-xxs); margin-bottom: var(--space-xs);">${title}</h2>
+                <p style="font-size: 0.9rem; line-height: 1.5; margin-bottom: var(--space-sm);">${desc}</p>
+                
+                <ul class="modal-spec-list">
+                  <li><span>HS Code Classification</span> <span>${hs}</span></li>
+                  <li><span>Core Fabric Composition</span> <span>${material}</span></li>
+                  <li><span>Standard Dimensions</span> <span>${sizes}</span></li>
+                  <li><span>Export Packing Details</span> <span>${packing}</span></li>
+                </ul>
+              </div>
+              <div style="margin-top: var(--space-md);">
+                <a href="enquiry.html?product=${queryParam}" class="btn btn-primary" style="width: 100%;">Inquire About Product</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      // Show overlay
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden'; // Stop background scrolling
+
+      // Setup close actions
+      const closeBtn = overlay.querySelector('.modal-close-btn');
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+    });
+  });
+
+  const closeModal = () => {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  // Close when clicking outside on backdrop overlay
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      closeModal();
+    }
+  });
+
+  // Keyboard accessibility
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) {
+      closeModal();
+    }
   });
 }
