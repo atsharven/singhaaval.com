@@ -12,32 +12,28 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initHeroParallax();
   initTestimonials();
-  initProductModal();
+  initProductDetailPanel();
+  initWhatsAppFAB();
 });
 
-/**
- * 1. Sticky & Collapsing Header
- * Modifies header height and blur on scroll to maintain premium aesthetic
- */
+/* ─────────────────────────────────────────────
+   1. Sticky & Collapsing Header
+   ───────────────────────────────────────────── */
 function initHeaderScroll() {
   const header = document.querySelector('.header');
   if (!header) return;
 
   const handleScroll = () => {
-    if (window.scrollY > 50) {
-      header.classList.add('header-scrolled');
-    } else {
-      header.classList.remove('header-scrolled');
-    }
+    header.classList.toggle('header-scrolled', window.scrollY > 50);
   };
 
   window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll(); // Trigger initial state
+  handleScroll();
 }
 
-/**
- * 2. Mobile Fullscreen Menu Toggle
- */
+/* ─────────────────────────────────────────────
+   2. Mobile Fullscreen Menu Toggle
+   ───────────────────────────────────────────── */
 function initMobileMenu() {
   const toggle = document.querySelector('.mobile-toggle');
   const menu = document.querySelector('.mobile-menu');
@@ -45,292 +41,325 @@ function initMobileMenu() {
 
   if (!toggle || !menu) return;
 
-  const openMenu = () => {
-    menu.classList.add('open');
-    document.body.style.overflow = 'hidden'; // Stop page scrolling
+  const setBodyScroll = (lock) => {
+    document.body.style.overflow = lock ? 'hidden' : '';
   };
 
-  const closeMenu = () => {
-    menu.classList.remove('open');
-    document.body.style.overflow = '';
-  };
+  const openMenu = () => { menu.classList.add('open'); setBodyScroll(true); };
+  const closeMenu = () => { menu.classList.remove('open'); setBodyScroll(false); };
 
   toggle.addEventListener('click', openMenu);
   if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-
-  // Close menu when clicking navigation links
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
+  menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 }
 
-/**
- * 3. IntersectionObserver for Reveal Animations
- * Activates staggered animations when scrolling into view
- */
+/* ─────────────────────────────────────────────
+   3. IntersectionObserver Reveal Animations
+   ───────────────────────────────────────────── */
 function initScrollReveal() {
   const reveals = document.querySelectorAll('.reveal');
-  if (reveals.length === 0) return;
+  if (!reveals.length) return;
 
-  const revealObserver = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
-        observer.unobserve(entry.target); // Run only once
+        obs.unobserve(entry.target);
       }
     });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  reveals.forEach(el => revealObserver.observe(el));
+  reveals.forEach(el => observer.observe(el));
 }
 
-/**
- * 4. Product Category Filters (Product Catalog Page)
- * Leverages data attributes to cleanly show/hide products
- */
+/* ─────────────────────────────────────────────
+   4. Product Category Filters
+   ───────────────────────────────────────────── */
 function initProductFilter() {
-  const filterTabs = document.querySelectorAll('.filter-tab');
-  const products = document.querySelectorAll('.product-card');
+  const tabs = document.querySelectorAll('.filter-tab');
+  const cards = document.querySelectorAll('.product-card');
 
-  if (filterTabs.length === 0 || products.length === 0) return;
+  if (!tabs.length || !cards.length) return;
 
-  filterTabs.forEach(tab => {
+  tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      // Toggle active tab class
-      filterTabs.forEach(t => t.classList.remove('active'));
+      // Close any open detail panel first
+      closeActiveDetailPanel();
+
+      tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
 
-      const filterVal = tab.getAttribute('data-filter');
+      const filter = tab.dataset.filter;
 
-      products.forEach(product => {
-        const productCat = product.getAttribute('data-category');
-        
-        if (filterVal === 'all' || productCat === filterVal) {
-          product.style.display = '';
-          // Re-trigger animation style
-          setTimeout(() => {
-            product.style.opacity = '1';
-            product.style.transform = 'translateY(0)';
-          }, 50);
+      cards.forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        if (match) {
+          card.style.display = '';
+          requestAnimationFrame(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+          });
         } else {
-          product.style.opacity = '0';
-          product.style.transform = 'translateY(15px)';
-          // Delay display change to match fade transition
-          setTimeout(() => {
-            product.style.display = 'none';
-          }, 300);
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(12px)';
+          setTimeout(() => { card.style.display = 'none'; }, 280);
         }
       });
     });
   });
 }
 
-/**
- * 5. Enquiry Prefill & Navigation Parameters
- * Auto-selects products on the Enquiry page if user clicked from a specific card
- */
+/* ─────────────────────────────────────────────
+   5. Enquiry Prefill from URL params
+   ───────────────────────────────────────────── */
 function initEnquiryPreFill() {
-  const productSelect = document.getElementById('enquiry-product');
-  if (!productSelect) return;
+  const select = document.getElementById('enquiry-product');
+  if (!select) return;
 
-  const urlParams = new URLSearchParams(window.location.search);
-  const selectedProduct = urlParams.get('product');
+  const product = new URLSearchParams(window.location.search).get('product');
+  if (!product) return;
 
-  if (selectedProduct) {
-    // Attempt to match and set value
-    for (let option of productSelect.options) {
-      if (option.value.toLowerCase() === selectedProduct.toLowerCase()) {
-        productSelect.value = option.value;
-        break;
-      }
+  for (const opt of select.options) {
+    if (opt.value.toLowerCase() === product.toLowerCase()) {
+      select.value = opt.value;
+      break;
     }
   }
 }
 
-/**
- * 6. Smooth Scroll for internal links
- */
+/* ─────────────────────────────────────────────
+   6. Smooth Scroll for anchor links
+   ───────────────────────────────────────────── */
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
       if (href && href !== '#') {
         e.preventDefault();
         const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
       }
     });
   });
 }
 
-/**
- * 7. GPU-Accelerated Parallax Scroll Effect on Hero Background
- */
+/* ─────────────────────────────────────────────
+   7. GPU-Accelerated Hero Parallax
+   ───────────────────────────────────────────── */
 function initHeroParallax() {
-  const heroImage = document.querySelector('.hero-image-wrap img');
-  if (!heroImage) return;
+  const img = document.querySelector('.hero-image-wrap img');
+  if (!img) return;
 
   let ticking = false;
 
-  const updateParallax = () => {
-    const scrollY = window.scrollY;
-    // Limit calculations to visible hero area
-    if (scrollY <= window.innerHeight) {
-      const scale = 1 + scrollY * 0.0004;
-      const translateY = scrollY * 0.28;
-      heroImage.style.transform = `translate3d(0, ${translateY}px, 0) scale(${scale})`;
+  const update = () => {
+    const y = window.scrollY;
+    if (y <= window.innerHeight) {
+      img.style.transform = `translate3d(0, ${y * 0.25}px, 0) scale(${1 + y * 0.0003})`;
     }
     ticking = false;
   };
 
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(updateParallax);
-      ticking = true;
-    }
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
   }, { passive: true });
 }
 
-/**
- * 8. Editorial Testimonials Carousel Selector
- */
+/* ─────────────────────────────────────────────
+   8. Testimonials Carousel
+   ───────────────────────────────────────────── */
 function initTestimonials() {
   const slides = document.querySelectorAll('.testimonial-slide');
   const dots = document.querySelectorAll('.testimonial-dot');
-  
-  if (slides.length === 0) return;
+  if (!slides.length) return;
 
-  let activeIndex = 0;
-  let intervalId;
+  let active = 0;
+  let timer;
 
-  const showSlide = (index) => {
-    slides.forEach((slide, i) => {
-      if (i === index) {
-        slide.classList.add('active');
-        if (dots[i]) dots[i].classList.add('active');
-      } else {
-        slide.classList.remove('active');
-        if (dots[i]) dots[i].classList.remove('active');
-      }
+  const show = (i) => {
+    slides.forEach((s, idx) => {
+      s.classList.toggle('active', idx === i);
+      if (dots[idx]) dots[idx].classList.toggle('active', idx === i);
     });
-    activeIndex = index;
+    active = i;
   };
 
-  const nextSlide = () => {
-    const next = (activeIndex + 1) % slides.length;
-    showSlide(next);
-  };
+  const next = () => show((active + 1) % slides.length);
+  const start = () => { timer = setInterval(next, 5000); };
+  const stop = () => clearInterval(timer);
 
-  // Start rotation
-  const startAutoplay = () => {
-    intervalId = setInterval(nextSlide, 6000);
-  };
-
-  const stopAutoplay = () => {
-    clearInterval(intervalId);
-  };
-
-  // Manual dot selectors
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      stopAutoplay();
-      showSlide(index);
-      startAutoplay();
-    });
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => { stop(); show(i); start(); });
   });
 
-  // Init
-  showSlide(0);
-  startAutoplay();
+  show(0);
+  start();
 }
 
-/**
- * 9. Product Quick View Modal Controller
- * Reads specifications from product data-attributes, injects into modal body, opens overlay.
- */
-function initProductModal() {
-  const overlay = document.getElementById('product-modal');
-  const quickViews = document.querySelectorAll('.product-quick-view');
-  
-  if (!overlay || quickViews.length === 0) return;
+/* ─────────────────────────────────────────────
+   9. Inline Product Detail Panel
+   Replaces the old modal. Clicking a product card
+   expands a full-width spec panel directly below
+   it inside the grid. The user stays on the page
+   with focus on that single product.
+   ───────────────────────────────────────────── */
 
-  // Open Modal Handler
-  quickViews.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const card = btn.closest('.product-card');
-      if (!card) return;
+/** Currently open panel reference */
+let currentPanel = null;
+let currentActiveCard = null;
 
-      // Extract specification details from card attributes
-      const title = card.getAttribute('data-title') || 'Product Details';
-      const hs = card.getAttribute('data-hs') || '';
-      const imageSrc = card.getAttribute('data-image') || '';
-      const material = card.getAttribute('data-material') || 'Cotton Canvas';
-      const sizes = card.getAttribute('data-sizes') || 'Various Sizes';
-      const packing = card.getAttribute('data-packaging') || 'Standard Carton';
-      const desc = card.getAttribute('data-desc') || '';
-      const queryParam = card.getAttribute('data-query') || '';
+function closeActiveDetailPanel(callback) {
+  if (!currentPanel) { if (callback) callback(); return; }
 
-      // Construct Modal HTML Markup
-      overlay.innerHTML = `
-        <div class="modal-card">
-          <div class="modal-close-btn" aria-label="Close Preview">&times;</div>
-          <div class="modal-content-grid">
-            <div class="modal-image-pane">
-              <img src="${imageSrc}" alt="${title}">
+  currentPanel.classList.add('closing');
+  if (currentActiveCard) currentActiveCard.style.outline = '';
+  const panel = currentPanel;
+
+  panel.addEventListener('animationend', () => {
+    panel.remove();
+    if (callback) callback();
+  }, { once: true });
+
+  currentPanel = null;
+  currentActiveCard = null;
+}
+
+function initProductDetailPanel() {
+  const grid = document.querySelector('.products-grid');
+  if (!grid) return;
+
+  // Delegate click on entire grid
+  grid.addEventListener('click', (e) => {
+    const card = e.target.closest('.product-card');
+    if (!card) return;
+
+    // Don't intercept clicks on "Request Quote" links
+    if (e.target.closest('.product-actions a')) return;
+
+    // If clicking the already open card, just close
+    if (card === currentActiveCard) {
+      closeActiveDetailPanel();
+      return;
+    }
+
+    // Close any existing panel first, then open new
+    closeActiveDetailPanel(() => openDetailPanel(card, grid));
+  });
+
+  // Escape key closes panel
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeActiveDetailPanel();
+  });
+}
+
+function openDetailPanel(card, grid) {
+  // Read data from card attributes
+  const d = {
+    title:     card.dataset.title     || card.querySelector('.product-title')?.textContent || 'Product',
+    hs:        card.dataset.hs        || '',
+    image:     card.dataset.image     || card.querySelector('.product-image-container img')?.src || '',
+    material:  card.dataset.material  || 'Cotton Canvas',
+    sizes:     card.dataset.sizes     || 'Various',
+    packaging: card.dataset.packaging || 'Standard Carton',
+    desc:      card.dataset.desc      || card.querySelector('.product-desc')?.textContent || '',
+    query:     card.dataset.query     || '',
+  };
+
+  // Build panel HTML
+  const panel = document.createElement('div');
+  panel.className = 'product-detail-panel';
+  panel.innerHTML = `
+    <div class="detail-panel-inner" style="position:relative;">
+      <button class="detail-panel-close" aria-label="Close">&times;</button>
+      <div class="detail-panel-image">
+        <img src="${d.image}" alt="${d.title}" loading="lazy">
+      </div>
+      <div class="detail-panel-info">
+        <div>
+          <span class="text-meta">Specification Sheet</span>
+          <h2 style="margin-top: var(--space-xxs); margin-bottom: var(--space-xs);">${d.title}</h2>
+          <p style="font-size: 0.9rem; line-height: 1.6;">${d.desc}</p>
+
+          <div class="detail-spec-grid">
+            <div class="detail-spec-item">
+              <div class="detail-spec-label">HS Code</div>
+              <div class="detail-spec-value">${d.hs}</div>
             </div>
-            <div class="modal-info-pane">
-              <div>
-                <span class="text-meta">Specification Sheet</span>
-                <h2 style="font-size: 2rem; margin-top: var(--space-xxs); margin-bottom: var(--space-xs);">${title}</h2>
-                <p style="font-size: 0.9rem; line-height: 1.5; margin-bottom: var(--space-sm);">${desc}</p>
-                
-                <ul class="modal-spec-list">
-                  <li><span>HS Code Classification</span> <span>${hs}</span></li>
-                  <li><span>Core Fabric Composition</span> <span>${material}</span></li>
-                  <li><span>Standard Dimensions</span> <span>${sizes}</span></li>
-                  <li><span>Export Packing Details</span> <span>${packing}</span></li>
-                </ul>
-              </div>
-              <div style="margin-top: var(--space-md);">
-                <a href="enquiry.html?product=${queryParam}" class="btn btn-primary" style="width: 100%;">Inquire About Product</a>
-              </div>
+            <div class="detail-spec-item">
+              <div class="detail-spec-label">Fabric</div>
+              <div class="detail-spec-value">${d.material}</div>
+            </div>
+            <div class="detail-spec-item">
+              <div class="detail-spec-label">Dimensions</div>
+              <div class="detail-spec-value">${d.sizes}</div>
+            </div>
+            <div class="detail-spec-item">
+              <div class="detail-spec-label">Export Packing</div>
+              <div class="detail-spec-value">${d.packaging}</div>
             </div>
           </div>
         </div>
-      `;
 
-      // Show overlay
-      overlay.classList.add('open');
-      document.body.style.overflow = 'hidden'; // Stop background scrolling
+        <div class="detail-panel-actions">
+          <a href="enquiry.html?product=${d.query}" class="btn btn-primary"><span>Request Bulk Quote</span></a>
+          <a href="https://wa.me/918273664082?text=Hi, I'm interested in ${encodeURIComponent(d.title)}" class="btn btn-outline" target="_blank" rel="noopener">
+            <i class="fa-brands fa-whatsapp" style="margin-right:6px"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  `;
 
-      // Setup close actions
-      const closeBtn = overlay.querySelector('.modal-close-btn');
-      if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    });
+  // Insert panel right after the clicked card
+  card.insertAdjacentElement('afterend', panel);
+
+  // Highlight active card
+  card.style.outline = '2px solid var(--accent)';
+  card.style.outlineOffset = '-2px';
+
+  currentPanel = panel;
+  currentActiveCard = card;
+
+  // Smooth scroll panel into view
+  requestAnimationFrame(() => {
+    panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
 
-  const closeModal = () => {
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  };
+  // Close button
+  panel.querySelector('.detail-panel-close').addEventListener('click', (e) => {
+    e.stopPropagation();
+    closeActiveDetailPanel();
+  });
+}
 
-  // Close when clicking outside on backdrop overlay
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) {
-      closeModal();
+/* ─────────────────────────────────────────────
+   10. Floating WhatsApp Button (Fixed Action Button)
+   Injected dynamically to all pages
+   ───────────────────────────────────────────── */
+function initWhatsAppFAB() {
+  // Check if FAB already exists (prevent duplicates)
+  if (document.querySelector('.whatsapp-fab')) return;
+
+  const fab = document.createElement('a');
+  fab.href = 'https://wa.me/918273664082?text=Hi, I\'m interested in learning more about your products and bulk export options.';
+  fab.target = '_blank';
+  fab.rel = 'noopener noreferrer';
+  fab.className = 'whatsapp-fab';
+  fab.setAttribute('data-tooltip', 'Message us on WhatsApp');
+  fab.setAttribute('aria-label', 'Contact via WhatsApp');
+  fab.innerHTML = '<i class="fa-brands fa-whatsapp"></i>';
+  
+  document.body.appendChild(fab);
+
+  // Hide FAB on mobile to avoid overlap with mobile menu
+  const mobileToggle = document.querySelector('.mobile-toggle');
+  if (mobileToggle) {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (mobileMenu) {
+      const observer = new MutationObserver(() => {
+        fab.style.display = mobileMenu.classList.contains('open') ? 'none' : 'flex';
+      });
+      observer.observe(mobileMenu, { attributes: true });
     }
-  });
-
-  // Keyboard accessibility
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && overlay.classList.contains('open')) {
-      closeModal();
-    }
-  });
+  }
 }

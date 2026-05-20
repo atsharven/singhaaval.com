@@ -6,21 +6,13 @@
   <title>Products Catalog - SinghAaval Heritage</title>
   <meta name="description" content="Browse our complete collection of handmade block prints, Embroidered Banjara Bags, and Rajasthan patchwork tapestries. Direct B2B quotes.">
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- Custom Styles -->
   <link rel="stylesheet" href="css/styles.css">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="images/27948d4a9efb9ec994b60d3948b1edd2.jpg">
 
-  <!-- B2B Products Graph Schema Markup -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -30,12 +22,7 @@
         "name": "Embroidered Banjara Bag",
         "image": "https://singhaaval.com/images/5ebb64662decea6c25e7e3edf3c9f9cf.jpg",
         "description": "Exquisite hand-embroidered bags featuring traditional Banjara mirrorwork and vintage textile patches.",
-        "category": "Bags & Pouches",
-        "offers": {
-          "@type": "AggregateOffer",
-          "priceCurrency": "USD",
-          "price": "Contact for bulk quotes"
-        }
+        "category": "Bags & Pouches"
       },
       {
         "@type": "Product",
@@ -57,6 +44,20 @@
         "image": "https://singhaaval.com/images/0a1a0dc0ef8e8c07716355d7bedc8204.jpg",
         "description": "Traditional patchwork tapestry handcrafted using vintage sarees, hand-embroidered patches, and sequins.",
         "category": "Home Furnishings"
+      },
+      {
+        "@type": "Product",
+        "name": "Elephant Wall Hanging",
+        "image": "https://singhaaval.com/images/d05692184cfdaf582e17e62f28b15afd.jpg",
+        "description": "Square decorative tapestry with a large handblock printed royal elephant in Rajasthan court style.",
+        "category": "Home Furnishings"
+      },
+      {
+        "@type": "Product",
+        "name": "Red Patchwork Tapestry",
+        "image": "https://singhaaval.com/images/e868f6ca5d385b41e5906ae1cf05a3a8.jpg",
+        "description": "Vibrant red patchwork wall hanging assembled in small batches by women artisans in Ajmer village.",
+        "category": "Home Furnishings"
       }
     ]
   }
@@ -64,7 +65,7 @@
 </head>
 <body>
 
-  <!-- Global Header -->
+  <!-- Header -->
   <header class="header">
     <div class="container">
       <div class="header-inner">
@@ -75,48 +76,42 @@
             <span class="logo-subtitle">Heritage &amp; Excellence</span>
           </div>
         </a>
-
         <nav class="nav">
           <a href="index.html" class="nav-link">Home</a>
           <a href="products.html" class="nav-link active">Products</a>
           <a href="about.html" class="nav-link">About</a>
           <a href="enquiry.html" class="nav-link">Enquiry</a>
           <a href="contact.html" class="nav-link">Contact</a>
-          <a href="enquiry.html" class="btn btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.75rem;">Bulk Order</a>
+          <a href="enquiry.html" class="btn btn-outline" style="padding:0.45rem 1rem;font-size:0.7rem;">Bulk Order</a>
         </nav>
-
-        <div class="mobile-toggle">
-          <i class="fa-solid fa-bars-staggered"></i>
-        </div>
+        <div class="mobile-toggle"><i class="fa-solid fa-bars-staggered"></i></div>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Menu Overlay -->
+  <!-- Mobile Menu -->
   <div class="mobile-menu">
-    <div class="mobile-menu-close">
-      <i class="fa-solid fa-xmark"></i>
-    </div>
+    <div class="mobile-menu-close"><i class="fa-solid fa-xmark"></i></div>
     <a href="index.html">Home</a>
     <a href="products.html">Products</a>
     <a href="about.html">About</a>
     <a href="enquiry.html">Enquiry</a>
     <a href="contact.html">Contact</a>
-    <a href="enquiry.html" class="btn btn-primary" style="margin-top: var(--space-md);">Bulk Order</a>
+    <a href="enquiry.html" class="btn btn-primary" style="margin-top:var(--space-md);">Bulk Order</a>
   </div>
 
-  <main style="padding-top: 140px;">
-    <!-- Catalog Header -->
-    <section class="section" style="padding-bottom: 0;">
+  <main style="padding-top:100px;">
+    <!-- Page Header — compact -->
+    <section style="padding-bottom:var(--space-sm);">
       <div class="container text-center">
         <span class="text-meta">Export Inventory</span>
-        <h1 style="margin-top: var(--space-xs); margin-bottom: var(--space-sm);">Handcrafted Masterpieces</h1>
-        <p style="max-width: 600px; margin: 0 auto;">Each item carries the spirit of traditional Indian craftsmanship. Browse by category and request a customized B2B quote for wholesale supply.</p>
+        <h1 style="margin-top:var(--space-xxs);margin-bottom:var(--space-xs);">Handcrafted Masterpieces</h1>
+        <p style="max-width:550px;margin:0 auto;font-size:0.95rem;">Click any item to explore full specifications. Browse by category and request a customised B2B quote.</p>
       </div>
     </section>
 
-    <!-- Product Filter Tabs -->
-    <section class="section" style="padding-top: var(--space-lg); padding-bottom: var(--space-lg);">
+    <!-- Filter + Grid -->
+    <section class="section" style="padding-top:var(--space-md);">
       <div class="container">
         <div class="filter-tabs">
           <button class="filter-tab active" data-filter="all">All Crafts</button>
@@ -124,30 +119,30 @@
           <button class="filter-tab" data-filter="furnishings">Home Furnishings</button>
         </div>
 
-        <!-- Products Grid -->
+        <!-- Products Grid — clicking any card opens an inline detail panel below it -->
         <div class="products-grid">
-          
+
           <!-- Product 1 -->
           <article class="product-card" data-category="bags"
                    data-title="Embroidered Banjara Bag"
                    data-hs="HS 42022220"
                    data-image="images/5ebb64662decea6c25e7e3edf3c9f9cf.jpg"
                    data-material="Organic Handspun Cotton Canvas"
-                   data-sizes="42 cm x 35 cm x 12 cm"
-                   data-packaging="50 units per heavy-duty carton"
-                   data-desc="Exquisite shoulder bag detailed with traditional Banjara mirrorwork, metallic coin appliques, and hand-stitched borders. Features a strong zip lock and interior compartments."
+                   data-sizes="42 × 35 × 12 cm"
+                   data-packaging="50 units / heavy-duty carton"
+                   data-desc="Exquisite shoulder bag with traditional Banjara mirrorwork, metallic coin appliqués, and hand-stitched borders. Features zip closure and interior compartments. Each piece takes 3–4 days of dedicated artisan work."
                    data-query="banjara-bag">
             <div class="product-image-container">
-              <img src="images/5ebb64662decea6c25e7e3edf3c9f9cf.jpg" alt="Embroidered Banjara Bag">
+              <img src="images/5ebb64662decea6c25e7e3edf3c9f9cf.jpg" alt="Embroidered Banjara Bag" loading="lazy">
               <span class="product-tag">Bags &amp; Pouches</span>
-              <button class="product-quick-view">Quick View</button>
+              <span class="product-quick-view">View Details ↗</span>
             </div>
             <div class="product-details">
               <div class="product-meta-header">
                 <h3 class="product-title">Embroidered Banjara Bag</h3>
                 <span class="product-hs">HS 42022220</span>
               </div>
-              <p class="product-desc">Exquisite hand-embroidered bags featuring traditional Banjara mirrorwork and vintage textile patches.</p>
+              <p class="product-desc">Traditional Banjara mirrorwork and vintage textile patches.</p>
               <div class="product-actions">
                 <a href="enquiry.html?product=banjara-bag" class="btn btn-secondary">Request Quote</a>
               </div>
@@ -160,21 +155,21 @@
                    data-hs="HS 42022220"
                    data-image="images/0a22ab97fdf50e6cb620c059aadbd80c.jpg"
                    data-material="Handblock Khadi Cotton Canvas"
-                   data-sizes="38 cm x 40 cm"
-                   data-packaging="60 units per cargo block pack"
-                   data-desc="Spacious slouchy Jhola bag styled with organic ochre block prints, vintage Rajasthan embroidery panels, and dual reinforcement stitching."
+                   data-sizes="38 × 40 cm"
+                   data-packaging="60 units / cargo block pack"
+                   data-desc="Spacious slouchy Jhola bag with organic ochre block prints, vintage Rajasthan embroidery panels, and dual reinforcement stitching. Designed for daily carry with a traditional aesthetic."
                    data-query="jhola-bag">
             <div class="product-image-container">
-              <img src="images/0a22ab97fdf50e6cb620c059aadbd80c.jpg" alt="Green Embroidered Jhola Bag">
+              <img src="images/0a22ab97fdf50e6cb620c059aadbd80c.jpg" alt="Green Embroidered Jhola Bag" loading="lazy">
               <span class="product-tag">Bags &amp; Pouches</span>
-              <button class="product-quick-view">Quick View</button>
+              <span class="product-quick-view">View Details ↗</span>
             </div>
             <div class="product-details">
               <div class="product-meta-header">
                 <h3 class="product-title">Green Embroidered Jhola Bag</h3>
                 <span class="product-hs">HS 42022220</span>
               </div>
-              <p class="product-desc">Durable utility bag styled with intricate green block-print accents and traditional embroidery borders.</p>
+              <p class="product-desc">Intricate green block-print accents with embroidery borders.</p>
               <div class="product-actions">
                 <a href="enquiry.html?product=jhola-bag" class="btn btn-secondary">Request Quote</a>
               </div>
@@ -187,21 +182,21 @@
                    data-hs="HS 42022220"
                    data-image="images/50a895e1c5814edf023d6558ed602e7c.jpg"
                    data-material="Premium Coarse Cotton Threadwork"
-                   data-sizes="35 cm x 30 cm"
-                   data-packaging="70 units per master carton"
-                   data-desc="Bright mustard yellow shoulder bag with high-density multi-colored cotton thread embroideries, mirror inserts, and decorative side tassels."
+                   data-sizes="35 × 30 cm"
+                   data-packaging="70 units / master carton"
+                   data-desc="Bright mustard yellow shoulder bag with high-density multi-coloured cotton thread embroideries, mirror inserts, and decorative side tassels. A statement piece for retail displays."
                    data-query="yellow-bag">
             <div class="product-image-container">
-              <img src="images/50a895e1c5814edf023d6558ed602e7c.jpg" alt="Yellow Embroidered Shoulder Bag">
+              <img src="images/50a895e1c5814edf023d6558ed602e7c.jpg" alt="Yellow Embroidered Shoulder Bag" loading="lazy">
               <span class="product-tag">Bags &amp; Pouches</span>
-              <button class="product-quick-view">Quick View</button>
+              <span class="product-quick-view">View Details ↗</span>
             </div>
             <div class="product-details">
               <div class="product-meta-header">
                 <h3 class="product-title">Yellow Embroidered Bag</h3>
                 <span class="product-hs">HS 42022220</span>
               </div>
-              <p class="product-desc">Bright yellow bag featuring detailed traditional embroidery borders and custom mirror accents.</p>
+              <p class="product-desc">Embroidery borders with custom mirror accents and tassels.</p>
               <div class="product-actions">
                 <a href="enquiry.html?product=yellow-bag" class="btn btn-secondary">Request Quote</a>
               </div>
@@ -214,21 +209,21 @@
                    data-hs="HS 63049210"
                    data-image="images/0a1a0dc0ef8e8c07716355d7bedc8204.jpg"
                    data-material="Upcycled Vintage Saree / Khadi Patches"
-                   data-sizes="100 cm x 150 cm"
-                   data-packaging="15 units per moisture-sealed bale"
-                   data-desc="Gorgeous wall tapestry assembled from wedding saree parts, heavy beadwork, and layered stitch backings. Complete hanging loops integrated."
+                   data-sizes="100 × 150 cm"
+                   data-packaging="15 units / moisture-sealed bale"
+                   data-desc="Gorgeous wall tapestry assembled from wedding saree parts, heavy beadwork, and layered stitch backings. Complete hanging loops integrated. Each piece is a unique collage."
                    data-query="wall-hanging">
             <div class="product-image-container">
-              <img src="images/0a1a0dc0ef8e8c07716355d7bedc8204.jpg" alt="Patchwork Wall Hanging">
+              <img src="images/0a1a0dc0ef8e8c07716355d7bedc8204.jpg" alt="Patchwork Wall Hanging" loading="lazy">
               <span class="product-tag">Furnishings</span>
-              <button class="product-quick-view">Quick View</button>
+              <span class="product-quick-view">View Details ↗</span>
             </div>
             <div class="product-details">
               <div class="product-meta-header">
                 <h3 class="product-title">Patchwork Wall Hanging</h3>
                 <span class="product-hs">HS 63049210</span>
               </div>
-              <p class="product-desc">Traditional patchwork tapestry handcrafted using vintage sarees, hand-embroidered patches, and sequins.</p>
+              <p class="product-desc">Vintage sarees and hand-embroidered patches with sequins.</p>
               <div class="product-actions">
                 <a href="enquiry.html?product=wall-hanging" class="btn btn-secondary">Request Quote</a>
               </div>
@@ -241,21 +236,21 @@
                    data-hs="HS 63049210"
                    data-image="images/d05692184cfdaf582e17e62f28b15afd.jpg"
                    data-material="Loomed Cotton with Indigo Dye"
-                   data-sizes="90 cm x 90 cm"
-                   data-packaging="20 units per moisture-sealed bale"
-                   data-desc="Square decorative tapestry featuring a large handblock printed royal elephant in Rajasthan court style, flanked by classic floral block stamps."
+                   data-sizes="90 × 90 cm"
+                   data-packaging="20 units / moisture-sealed bale"
+                   data-desc="Square decorative tapestry featuring a handblock printed royal elephant in classic Rajasthan court style, flanked by floral block stamps. Natural indigo dye on hand-loomed cotton."
                    data-query="elephant-hanging">
             <div class="product-image-container">
-              <img src="images/d05692184cfdaf582e17e62f28b15afd.jpg" alt="Elephant Wall Hanging">
+              <img src="images/d05692184cfdaf582e17e62f28b15afd.jpg" alt="Elephant Wall Hanging" loading="lazy">
               <span class="product-tag">Furnishings</span>
-              <button class="product-quick-view">Quick View</button>
+              <span class="product-quick-view">View Details ↗</span>
             </div>
             <div class="product-details">
               <div class="product-meta-header">
                 <h3 class="product-title">Elephant Wall Hanging</h3>
                 <span class="product-hs">HS 63049210</span>
               </div>
-              <p class="product-desc">Detailed wall hanging decorated with handmade block prints and classic central elephant embroidery motif.</p>
+              <p class="product-desc">Handblock printed elephant motif on indigo-dyed cotton.</p>
               <div class="product-actions">
                 <a href="enquiry.html?product=elephant-hanging" class="btn btn-secondary">Request Quote</a>
               </div>
@@ -268,74 +263,69 @@
                    data-hs="HS 63049210"
                    data-image="images/e868f6ca5d385b41e5906ae1cf05a3a8.jpg"
                    data-material="Upcycled Cotton &amp; Needlework Panels"
-                   data-sizes="120 cm x 180 cm"
-                   data-packaging="12 units per moisture-sealed bale"
-                   data-desc="Deep crimson red patchwork tapestry assembled in Ajmer village. Filled with dense needlework, small glass mirrors, and durable canvas margins."
+                   data-sizes="120 × 180 cm"
+                   data-packaging="12 units / moisture-sealed bale"
+                   data-desc="Deep crimson red patchwork tapestry assembled in Ajmer village. Dense needlework, small glass mirrors, and durable canvas margins. Our largest and most statement-making wall piece."
                    data-query="red-tapestry">
             <div class="product-image-container">
-              <img src="images/e868f6ca5d385b41e5906ae1cf05a3a8.jpg" alt="Red Patchwork Wall Hanging">
+              <img src="images/e868f6ca5d385b41e5906ae1cf05a3a8.jpg" alt="Red Patchwork Wall Hanging" loading="lazy">
               <span class="product-tag">Furnishings</span>
-              <button class="product-quick-view">Quick View</button>
+              <span class="product-quick-view">View Details ↗</span>
             </div>
             <div class="product-details">
               <div class="product-meta-header">
                 <h3 class="product-title">Red Patchwork Tapestry</h3>
                 <span class="product-hs">HS 63049210</span>
               </div>
-              <p class="product-desc">Vibrant red patchwork wall hanging assembled in small batches by women artisans in Ajmer village.</p>
+              <p class="product-desc">Vibrant red patchwork by women artisans in Ajmer village.</p>
               <div class="product-actions">
                 <a href="enquiry.html?product=red-tapestry" class="btn btn-secondary">Request Quote</a>
               </div>
             </div>
           </article>
+
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Dynamic Modal Overlay Injection Target -->
-  <div id="product-modal" class="modal-overlay"></div>
-
-  <!-- Global Footer -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
         <div class="footer-brand">
           <h3>SinghAaval</h3>
-          <p>Carrying ancient narratives through handcrafted exports. Ethical, sustainable textiles from Ajmer, Rajasthan to the modern world.</p>
+          <p>Ethical, sustainable textiles from Ajmer, Rajasthan to the modern world.</p>
           <div class="footer-socials">
             <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
             <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="https://wa.me/918273664082" class="social-icon" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
-        
         <div class="footer-column">
           <h4>Navigation</h4>
           <ul class="footer-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="products.html">Products Catalog</a></li>
+            <li><a href="products.html">Products</a></li>
             <li><a href="about.html">Our Story</a></li>
             <li><a href="enquiry.html">B2B Enquiry</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
           </ul>
         </div>
-
         <div class="footer-column">
-          <h4>Contact &amp; Location</h4>
+          <h4>Contact</h4>
           <ul class="footer-links">
-            <li><span style="color: rgba(255,255,255,0.6);"><i class="fa-solid fa-map-location-dot" style="margin-right: 8px;"></i> Singhaaval Village, Ajmer, Rajasthan, India</span></li>
-            <li><a href="mailto:info@singhaaval.com"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i> info@singhaaval.com</a></li>
-            <li><a href="https://wa.me/918273664082"><i class="fa-solid fa-phone" style="margin-right: 8px;"></i> +91 8273664082</a></li>
+            <li><span style="color:rgba(255,255,255,0.6);"><i class="fa-solid fa-map-location-dot" style="margin-right:6px;"></i>Singhaaval, Ajmer, Rajasthan</span></li>
+            <li><a href="mailto:info@singhaaval.com"><i class="fa-solid fa-envelope" style="margin-right:6px;"></i>info@singhaaval.com</a></li>
+            <li><a href="https://wa.me/918273664082"><i class="fa-solid fa-phone" style="margin-right:6px;"></i>+91 8273664082</a></li>
           </ul>
         </div>
       </div>
-
       <div class="footer-bottom">
         <p>&copy; 2026 SinghAaval Heritage. All rights reserved.</p>
         <div class="footer-bottom-links">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms of Service</a>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
         </div>
       </div>
     </div>
