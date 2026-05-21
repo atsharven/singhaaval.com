@@ -426,7 +426,6 @@ p {
   object-fit: cover;
   position: absolute;
   inset: 0;
-  will-change: transform;
   transform-origin: center center;
 }
 
@@ -767,6 +766,65 @@ p {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 400px;
+}
+
+/* Responsive Detail Panel - Mobile Fix (Option A) */
+@media (max-width: 1024px) {
+  .detail-panel-inner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .detail-panel-image {
+    height: 300px;
+    min-height: 300px;
+  }
+
+  .detail-panel-info {
+    padding: var(--space-lg);
+  }
+}
+
+@media (max-width: 768px) {
+  .detail-panel-inner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    max-height: 70vh;
+  }
+
+  .detail-panel-image {
+    height: 250px;
+    min-height: 250px;
+  }
+
+  .detail-panel-info {
+    padding: var(--space-md);
+    justify-content: flex-start;
+    overflow-y: auto;
+  }
+
+  .detail-panel-close {
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+
+  .detail-spec-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-spec-item:nth-child(odd) {
+    border-right: none;
+  }
+
+  .detail-panel-actions {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .detail-panel-actions .btn {
+    width: 100%;
+  }
 }
 
 .detail-panel-image {
@@ -1262,6 +1320,27 @@ textarea.form-input {
   cursor: pointer;
   text-decoration: none;
   animation: fabBounce 2s ease-in-out infinite;
+}
+
+/* Dynamic FAB Positioning on Mobile (Option A) */
+@media (max-width: 768px) {
+  .whatsapp-fab {
+    bottom: 80px;  /* Higher to avoid bottom nav/elements */
+    right: var(--space-sm);  /* Closer to edge */
+    width: 56px;
+    height: 56px;
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .whatsapp-fab {
+    bottom: 70px;
+    right: 12px;
+    width: 52px;
+    height: 52px;
+    font-size: 1.25rem;
+  }
 }
 
 .whatsapp-fab:hover {

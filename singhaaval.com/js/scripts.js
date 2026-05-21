@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initProductFilter();
   initEnquiryPreFill();
   initSmoothScroll();
-  initHeroParallax();
   initTestimonials();
   initProductDetailPanel();
   initWhatsAppFAB();
@@ -144,26 +143,9 @@ function initSmoothScroll() {
 }
 
 /* ─────────────────────────────────────────────
-   7. GPU-Accelerated Hero Parallax
+   7. Hero Parallax Removed (See Option A: Cleaner UX)
+   Static image, no scroll transformation
    ───────────────────────────────────────────── */
-function initHeroParallax() {
-  const img = document.querySelector('.hero-image-wrap img');
-  if (!img) return;
-
-  let ticking = false;
-
-  const update = () => {
-    const y = window.scrollY;
-    if (y <= window.innerHeight) {
-      img.style.transform = `translate3d(0, ${y * 0.25}px, 0) scale(${1 + y * 0.0003})`;
-    }
-    ticking = false;
-  };
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) { requestAnimationFrame(update); ticking = true; }
-  }, { passive: true });
-}
 
 /* ─────────────────────────────────────────────
    8. Testimonials Carousel
