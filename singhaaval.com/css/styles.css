@@ -920,6 +920,69 @@ p {
   margin-top: var(--space-md);
 }
 
+/* Markdown Content Styles (Product Descriptions) */
+.description-content {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.description-content h1,
+.description-content h2,
+.description-content h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-xs);
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.description-content h1 {
+  font-size: 1.2rem;
+}
+
+.description-content h2 {
+  font-size: 1.1rem;
+  margin-top: var(--space-md);
+}
+
+.description-content h3 {
+  font-size: 1rem;
+}
+
+.description-content ul,
+.description-content ol {
+  margin-left: var(--space-md);
+  margin-bottom: var(--space-sm);
+}
+
+.description-content li {
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+}
+
+.description-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.description-content em {
+  font-style: italic;
+  color: var(--text-primary);
+}
+
+.description-content p {
+  margin-bottom: 0.7rem;
+}
+
+.description-content br {
+  content: '';
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
 /* ==========================================================================
    7. Call to Action (Compact Banner)
    ========================================================================== */
