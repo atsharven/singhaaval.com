@@ -367,12 +367,12 @@ function renderEnquiryForm(b) {
       </div>
       <fieldset class="product-picker">
         <legend>Products you want a quote for</legend>
-        <button type="button" class="picker-clear" data-picker-clear hidden aria-label="Clear all selected products">Clear</button>
         <select class="picker-select" data-picker-select aria-label="Add a product to your quote">
           <option value="">Add a product…</option>
           ${productOptions}
         </select>
         <ul class="picker-list" data-picker-list></ul>
+        <button type="button" class="picker-clear" data-picker-clear hidden aria-label="Clear all selected products">Clear all</button>
       </fieldset>
       <label>Message
         <textarea name="message" rows="4" placeholder="Anything else: target price, timelines, custom sizes, or a product not listed here…"></textarea>

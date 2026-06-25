@@ -163,8 +163,8 @@ function wireProductModal() {
         ).join('') + `</div>`
       : '';
     modal.innerHTML = `
-      <button class="modal-close" aria-label="Close">&times;</button>
       <div class="modal-dialog">
+        <button class="modal-close" aria-label="Close">&times;</button>
         <div class="modal-grid">
           <div class="modal-gallery">
             <div class="modal-figure"><img class="modal-main-image" src="${images[0]}" alt="${esc(product.name)}"></div>
@@ -541,7 +541,11 @@ function wireEnquiry() {
       status.hidden = false;
       status.classList.toggle('is-info', tone === 'info');
     }
-    if (field) field.focus();
+    if (field) field.focus({ preventScroll: true });
+    // keep the message on screen: on a phone the focused field can sit far above
+    // the buttons, scrolling the just-shown status out of view. Instant, not smooth:
+    // a focus() on the same tick cancels a queued smooth scroll.
+    if (status && !status.hidden) status.scrollIntoView({ block: 'center' });
   };
 
 

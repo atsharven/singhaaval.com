@@ -260,6 +260,7 @@ p { margin: 0 0 var(--space-md); }
   line-height: 1.04;
   margin: 0 auto var(--space-lg);
   max-width: 18ch;                          /* wrap the big words nicely */
+  overflow-wrap: anywhere;                  /* a long unbreakable word can't overflow the band */
 }
 .hero-text { font-size: 1.15rem; line-height: 1.7; color: rgba(244, 239, 228, 0.82); max-width: 52ch; margin: 0 auto; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: var(--space-xl); justify-content: center; }
@@ -502,11 +503,11 @@ p { margin: 0 0 var(--space-md); }
 
 
 /* multi-product picker: a dropdown adds compact chosen-rows below it */
-.product-picker { position: relative; border: 0; padding: 0; margin: 0 0 var(--space-md); min-width: 0; }
+.product-picker { border: 0; padding: 0; margin: 0 0 var(--space-md); min-width: 0; }
 .picker-clear {
-  position: absolute; top: 0; right: 0;
-  font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
-  color: var(--color-text-muted); background: transparent; border: 0; cursor: pointer; padding: 2px 4px;
+  display: block; width: fit-content; margin: var(--space-sm) 0 0 auto;   /* right-aligned, in normal flow under the list */
+  font-family: var(--font-body); font-size: 0.74rem; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-text-muted); background: transparent; border: 0; cursor: pointer; padding: 0.5rem 0.6rem;
   transition: color var(--t-fast);
 }
 .picker-clear:hover { color: var(--color-error); }
@@ -570,9 +571,14 @@ p { margin: 0 0 var(--space-md); }
 }
 .modal.open .modal-dialog { transform: none; }
 .modal-close {
-  position: fixed; z-index: 2;                       /* fixed to the viewport: never scrolls away */
-  top: max(var(--space-md), env(safe-area-inset-top, 0px));
-  right: max(var(--space-md), env(safe-area-inset-right, 0px));
+  /* sticky inside the dialog: tracks the panel (never floats off in the backdrop
+     on wide screens), stays visible while a tall dialog scrolls, and keeps a real
+     offsetParent so the focus-trap counts it (Safari counts position:fixed as none) */
+  position: sticky; z-index: 2;
+  top: var(--space-sm);
+  /* negative bottom margin (= -1 * the 40px button height, --space-lg) lets the
+     gallery sit flush at the top with the button overlaying its corner, as before */
+  display: block; margin: var(--space-sm) var(--space-sm) calc(-1 * var(--space-lg)) auto;
   width: 40px; height: 40px; border-radius: var(--radius-full);
   border: 1px solid var(--border-on-light); background: var(--color-surface);
   font-size: 1.2rem; line-height: 1; color: var(--color-primary); cursor: pointer;

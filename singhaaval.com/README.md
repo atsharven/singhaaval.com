@@ -129,8 +129,8 @@ Open `assets/css/theme.css`. Change a value once and it updates everywhere.
 
 
 Browsers remember old files. While editing, refresh with `Ctrl + Shift + R` to
-force a fresh load. The asset links in the HTML files end with `?v=23`; if you
-change the look or layout for everyone, bump that number (to `?v=24`, and so on)
+force a fresh load. The asset links in the HTML files end with `?v=24`; if you
+change the look or layout for everyone, bump that number (to `?v=25`, and so on)
 so visitors get the new version instead of an old cached one.
 
 
