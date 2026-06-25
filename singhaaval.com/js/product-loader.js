@@ -8,8 +8,8 @@ async function loadProducts() {
   try {
     if (productsCache) return productsCache;
     
-    // Fetch the manifest
-    const res = await fetch('/products/products.json');
+    // Fetch the manifest (use relative path for cross-deployment compatibility)
+    const res = await fetch('../products/products.json');
     if (!res.ok) throw new Error('Failed to load products manifest');
     
     const productList = await res.json();
@@ -18,10 +18,11 @@ async function loadProducts() {
     const products = await Promise.all(
       productList.map(async (item) => {
         try {
-          const dataRes = await fetch(item.dataFile);
+          // Prefix paths with ../ since we're in js/ folder
+          const dataRes = await fetch(`../${item.dataFile}`);
           const data = await dataRes.json();
           
-          const descRes = await fetch(data.descriptionFile);
+          const descRes = await fetch(`../${data.descriptionFile}`);
           const description = await descRes.text();
           
           return { ...data, fullDescription: description };
