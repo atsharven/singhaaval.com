@@ -1,0 +1,14 @@
+# Security response headers for Apache / cPanel / most shared hosting.
+# Safe for this static site. (If you deploy on Netlify / Cloudflare Pages
+# instead, use the _headers file and delete this one.)
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), camera=(), microphone=()"
+  # Turn the next line on only once your site is served fully over HTTPS:
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+
+

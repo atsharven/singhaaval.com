@@ -1,0 +1,75 @@
+/* ============================================================
+   SinghAaval Heritage  —  THEME
+   ------------------------------------------------------------
+   THIS IS THE FILE YOU EDIT TO CHANGE THE LOOK.
+   Colours, fonts and spacing live here as tokens.
+   Change a value once and it updates everywhere on the site.
+   (You normally never need to touch styles.css.)
+   ============================================================ */
+
+
+:root {
+  /* ---- BRAND COLOURS (deep indigo + antique gold) ---- */
+  --color-primary:        #182640;   /* deep indigo : headings, dark sections   */
+  --color-gold:           #c2a24e;   /* antique gold : the one accent            */
+  --color-gold-dark:      #9a7c2f;   /* darker gold : label + link text on light */
+  --color-gold-soft:      #e7d6a6;   /* soft gold : labels on dark               */
+
+
+  /* ---- NEUTRALS (warm ivory, so products pop) ---- */
+  --color-background:     #f7f2e8;   /* page base (warm ivory)                   */
+  --color-surface:        #fffefb;   /* cards, panels (barely-warm white)        */
+  --color-muted:          #eee6d5;   /* soft sand panel fill                     */
+
+
+  /* ---- TEXT (tinted, never pure grey) ---- */
+  --color-text:           #1b2236;   /* main ink                                 */
+  --color-text-muted:     #726b5e;   /* secondary text (warm taupe)              */
+  --color-text-light:     #f4efe4;   /* text on dark backgrounds                 */
+  --color-error:          #b23b2e;   /* form validation message                  */
+
+
+  /* ---- BORDERS (low opacity, never solid/hard) ---- */
+  --border-on-light:      rgba(24, 38, 64, 0.10);
+  --border-on-dark:       rgba(244, 239, 228, 0.14);
+
+
+  /* ---- FONTS ----
+     Display = headings | Body = paragraphs | Accent = italic lines */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-accent:  'Crimson Pro', Georgia, serif;
+
+
+  /* ---- SPACING SCALE ---- */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+  /* section rhythm: ~56px mobile to ~104px desktop — the researched premium
+     band (80-120px) that reads structured without feeling empty */
+  --space-section: clamp(3.5rem, 6vw, 6.5rem);
+
+
+  /* ---- LAYOUT WIDTHS ---- */
+  --max-width:    1240px;   /* header / footer / wide bands */
+  --content-width: 1160px;  /* text + grids (uses the estate, stays readable) */
+
+
+  /* ---- MOTION (ease-out only) ---- */
+  --ease-out:  cubic-bezier(0.22, 1, 0.36, 1);
+  --t-in:  0.45s var(--ease-out);   /* things appearing  */
+  --t-fast: 0.18s var(--ease-out);
+
+
+  /* ---- CORNER ROUNDING (restrained) ---- */
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+}
+
+
+

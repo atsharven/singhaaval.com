@@ -1,0 +1,11 @@
+# Security response headers for Netlify / Cloudflare Pages (and similar).
+# These apply to every page. They are safe for this static site.
+# (If you deploy on Apache / cPanel instead, use the .htaccess file and
+#  delete this one. If you use GitHub Pages, neither works there.)
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=()
+# Turn the next line on only once your site is served fully over HTTPS:
+#  Strict-Transport-Security: max-age=31536000; includeSubDomains

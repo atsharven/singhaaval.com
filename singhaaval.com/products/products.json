@@ -1,8 +1,0 @@
-[
-  {"id": "banjara-bag", "dataFile": "products/banjara-bag/data.json"},
-  {"id": "jhola-bag", "dataFile": "products/jhola-bag/data.json"},
-  {"id": "yellow-bag", "dataFile": "products/yellow-bag/data.json"},
-  {"id": "wall-hanging", "dataFile": "products/wall-hanging/data.json"},
-  {"id": "elephant-hanging", "dataFile": "products/elephant-hanging/data.json"},
-  {"id": "red-tapestry", "dataFile": "products/red-tapestry/data.json"}
-]
