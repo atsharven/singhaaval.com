@@ -26,6 +26,13 @@ const SITE = {
   },
 
 
+  // Public website address + base location. Used for SEO and the structured
+  // data (schema.org) that render.js adds for Google. Edit if these change.
+  url: 'https://singhaaval.com',
+  region: 'Rajasthan',
+  country: 'IN',
+
+
   // Top menu. Add or remove a link here and it updates on every page.
   nav: [
     { label: 'Home',     href: 'index.html' },
@@ -78,42 +85,42 @@ const PRODUCTS = [
     name: 'Embroidered Banjara Bag',
     image: 'assets/images/products/banjara-bag.jpg',
     category: 'Bags & Pouches',
-    description: 'Handmade Banjara tote with mirror work and tribal motifs.',
+    description: 'Hand embroidered Banjara tote with Kutchi mirror work and tribal motifs.',
     hs: '42022220',
   },
   {
     name: 'Green Embroidered Jhola Bag',
     image: 'assets/images/products/green-jhola-bag.jpg',
     category: 'Bags & Pouches',
-    description: 'Roomy green cotton jhola with dense thread work.',
+    description: 'Roomy green cotton jhola bag with dense hand embroidery.',
     hs: '42022220',
   },
   {
     name: 'Yellow Kutchi Sling Bag',
     image: 'assets/images/products/yellow-kutchi-sling-bag.jpg',
     category: 'Bags & Pouches',
-    description: 'Small Kutchi sling bag with bright mirror work and a long strap.',
+    description: 'Hand embroidered Kutchi sling bag with bright mirror work and a long strap.',
     hs: '42022220',
   },
   {
     name: 'Pastel Patchwork Wall Hanging',
     image: 'assets/images/products/pastel-patchwork-wall-hanging.jpg',
     category: 'Home Furnishings',
-    description: 'Soft pastel patchwork panel that adds warmth to any wall.',
+    description: 'Soft pastel patchwork wall hanging that adds warmth to any wall.',
     hs: '63049210',
   },
   {
     name: 'Elephant Wall Hanging',
     image: 'assets/images/products/elephant-wall-hanging.jpg',
     category: 'Home Furnishings',
-    description: 'Festive elephant toran in rich colours, a Rajasthani classic.',
+    description: 'Festive elephant toran wall hanging in rich colours, a Rajasthani classic.',
     hs: '63049210',
   },
   {
     name: 'Red Patchwork Wall Hanging',
     image: 'assets/images/products/red-patchwork-wall-hanging.jpg',
     category: 'Home Furnishings',
-    description: 'Bold red patchwork hanging made from printed cottons.',
+    description: 'Bold red patchwork wall hanging made from printed cottons.',
     hs: '63049210',
   },
 ];
@@ -244,6 +251,32 @@ const PAGES = {
     },
     {
       type: 'enquiry-form',
+    },
+    {
+      type: 'faq',
+      heading: 'Wholesale and export questions',
+      items: [
+        {
+          q: 'What is your minimum order quantity?',
+          a: 'It varies by product. We welcome small trial orders and then scale to bulk. Tell us the products and quantities you want and we send a quote.',
+        },
+        {
+          q: 'Do you export worldwide?',
+          a: 'Yes. We export handmade bags and home textiles worldwide, with clear HS codes (42022220 for bags, 63049210 for furnishings) for smooth customs.',
+        },
+        {
+          q: 'Can you make custom designs or private label?',
+          a: 'Yes. We make custom colours, sizes and designs, and supply private label and OEM orders for shops and brands.',
+        },
+        {
+          q: 'What are your lead times?',
+          a: 'Ready stock ships quickly. Custom and bulk orders depend on the quantity and design, and we confirm a timeline with your quote.',
+        },
+        {
+          q: 'How do I get a quote or samples?',
+          a: 'Add the products you want to the enquiry list, then send it on WhatsApp or by email. We reply in two working days and can arrange samples.',
+        },
+      ],
     },
   ],
 };

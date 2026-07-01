@@ -129,8 +129,8 @@ Open `assets/css/theme.css`. Change a value once and it updates everywhere.
 
 
 Browsers remember old files. While editing, refresh with `Ctrl + Shift + R` to
-force a fresh load. The asset links in the HTML files end with `?v=24`; if you
-change the look or layout for everyone, bump that number (to `?v=25`, and so on)
+force a fresh load. The asset links in the HTML files end with `?v=25`; if you
+change the look or layout for everyone, bump that number (to `?v=26`, and so on)
 so visitors get the new version instead of an old cached one.
 
 
@@ -160,6 +160,31 @@ you can delete the other:
 You do not need to edit either file. Once your site is served over `https://`,
 you may turn on the one commented `Strict-Transport-Security` line inside your
 file for a little extra protection.
+
+
+## Being found on Google and WhatsApp (SEO)
+
+
+Two things control how the site looks in Google results and in WhatsApp/social
+link previews:
+
+
+1. **The wording** — each page's search title, its one-line description, and the
+   share preview text live at the top of the matching `.html` file, in the block
+   marked `<!-- ===== SEO (safe to edit) ===== -->`. Change the text between the
+   quotes and save. Keep titles around 60 characters and descriptions around 155.
+2. **The share image** — set once per page as `og:image` in that same block.
+   Replace it with a nice 1200x630 photo of your products for a stronger preview.
+
+
+The product details Google reads (your catalogue, FAQ, business info) are built
+automatically from `data.js`, so adding a product or FAQ also updates them.
+
+
+When you add a new page, also add one `<url>` block to `sitemap.xml` (copy an
+existing one and change the address). After going live, submit your site once in
+Google Search Console and list it on directories like IndiaMART and Faire to be
+found by buyers.
 
 
 

@@ -392,6 +392,20 @@ function renderEnquiryForm(b) {
 }
 
 
+// FAQ — native <details> accordion (no JS needed to open/close). Doubles as
+// on-page content and feeds the FAQPage structured data (see injectStructuredData).
+function renderFaq(b) {
+  const items = (b.items || []).filter(it => it && it.q);
+  if (!items.length) return '';
+  const rows = items.map(it => `
+    <details class="faq-item reveal">
+      <summary class="faq-q">${esc(it.q)}</summary>
+      <div class="faq-a">${paragraphs(it.a)}</div>
+    </details>`).join('');
+  return section(b, `${sectionHeading(b.heading)}<div class="faq-list">${rows}</div>`);
+}
+
+
 function renderUnknown(b) {
   return `<!-- Unknown block type: ${b && b.type ? b.type : '(none)'} -->`;
 }
@@ -408,8 +422,85 @@ const BLOCKS = {
   quote: renderQuote,
   cta: renderCta,
   ribbon: renderRibbon,
+  faq: renderFaq,
   'enquiry-form': renderEnquiryForm,
 };
+
+
+/* ---- STRUCTURED DATA (schema.org JSON-LD for Google) ----
+   Built from SITE / PRODUCTS / PAGES so it stays in sync when the owner edits
+   data.js. Google renders this; the human-readable meta + Open Graph tags live
+   statically in each .html <head> (so non-JS social scrapers see them too). */
+function injectStructuredData() {
+  if (typeof SITE === 'undefined') return;
+  const base = SITE.url || '';
+  const abs = path => /^https?:/.test(path) ? path : base + '/' + String(path).replace(/^\//, '');
+  const here = currentPage();
+  const orgDesc = 'Manufacturer, exporter and wholesale supplier of hand embroidered Banjara bags, Kutchi mirror work slings and Rajasthani wall hangings.';
+
+
+  const org = {
+    '@type': 'Organization', '@id': base + '/#org',
+    name: SITE.brand.name, description: orgDesc, url: base + '/', logo: abs(SITE.brand.logo),
+    email: SITE.contact.email,
+    address: { '@type': 'PostalAddress', addressRegion: SITE.region || 'Rajasthan', addressCountry: SITE.country || 'IN' },
+    areaServed: 'Worldwide',
+    contactPoint: {
+      '@type': 'ContactPoint', contactType: 'sales', email: SITE.contact.email,
+      url: 'https://wa.me/' + SITE.contact.whatsapp, availableLanguage: ['en', 'hi'],
+    },
+  };
+  const graph = [org, {
+    '@type': 'WebSite', '@id': base + '/#website',
+    url: base + '/', name: SITE.brand.name, publisher: { '@id': base + '/#org' },
+  }];
+
+
+  if (here === 'products.html' && typeof PRODUCTS !== 'undefined') {
+    graph.push({
+      '@type': 'ItemList', name: 'Handmade bags and home textiles',
+      itemListElement: PRODUCTS.map((p, i) => ({
+        '@type': 'ListItem', position: i + 1,
+        item: Object.assign({
+          '@type': 'Product', name: p.name, image: abs(p.image),
+          description: p.description || '', category: p.category,
+          brand: { '@type': 'Brand', name: SITE.brand.name },
+        }, p.hs ? { additionalProperty: { '@type': 'PropertyValue', name: 'HS Code', value: String(p.hs) } } : {}),
+      })),
+    });
+  }
+
+
+  if (here !== 'index.html') {
+    graph.push({
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: base + '/' },
+        { '@type': 'ListItem', position: 2, name: (document.title.split('|')[0] || '').trim(), item: base + '/' + here },
+      ],
+    });
+  }
+
+
+  const main = document.querySelector('[data-page]');
+  const blocks = (main && typeof PAGES !== 'undefined' && PAGES[main.dataset.page]) || [];
+  const faq = blocks.find(b => b.type === 'faq' && b.items && b.items.length);
+  if (faq) {
+    graph.push({
+      '@type': 'FAQPage',
+      mainEntity: faq.items.map(it => ({
+        '@type': 'Question', name: it.q,
+        acceptedAnswer: { '@type': 'Answer', text: Array.isArray(it.a) ? it.a.join(' ') : it.a },
+      })),
+    });
+  }
+
+
+  const el = document.createElement('script');
+  el.type = 'application/ld+json';
+  el.textContent = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph });
+  document.head.appendChild(el);
+}
 
 
 /* ---- build the page from its blocks ---- */
@@ -483,6 +574,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderHeader();
   renderFooter();
   renderPage();
+  injectStructuredData();
   if (typeof initInteractions === 'function') initInteractions(); // from main.js
 });
 

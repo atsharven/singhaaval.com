@@ -65,7 +65,9 @@ data.js (SITE / PRODUCTS / PAGES)  ->  render.js  ->  fills the shell
 
 
 `hero, text, categories, products, image, values, quote,
-cta, ribbon, enquiry-form`. `ribbon` is a thin full-width band of short trust
+cta, ribbon, faq, enquiry-form`. `faq` is a native `<details>` accordion (set
+its `items: [{ q, a }]`); it renders on the page AND feeds the FAQPage
+structured data. `ribbon` is a thin full-width band of short trust
 lines that scrolls slowly (edit its `items`; it pauses on reduced-motion and on
 hover). The `hero` heading carries a "threaded" stitch underline drawn by a
 travelling needle on load. `categories` renders one slideshow tile per product category
@@ -109,6 +111,14 @@ python -m http.server 8000
   cannot be set from static files. All author content is escaped via `esc()` in
   render.js, so no strict CSP is needed (a strict `style-src` would break the
   inline styles and the stardust canvas).
+- SEO split: the human-readable per-page `<title>`, meta description and Open
+  Graph/Twitter tags are STATIC in each `*.html` `<head>` (so non-JS social/
+  WhatsApp scrapers see them) — edit them there. The schema.org JSON-LD
+  (Organization, WebSite, ItemList/Product, BreadcrumbList, FAQPage) is built
+  from data.js by `injectStructuredData()` in render.js (Google renders it), so
+  it stays in sync automatically. `sitemap.xml` + `robots.txt` are hand-kept;
+  add a `<url>` and bump `<lastmod>` when you add a page. Each shell also has a
+  `<noscript>` fallback so no-JS crawlers see real content.
 - Premium design intent: generous spacing, large display type, tracked
   uppercase labels, tinted (not pure) greys, one gold accent (60/30/10),
   low-opacity borders instead of box-shadows, ease-out staggered motion,

@@ -541,6 +541,26 @@ p { margin: 0 0 var(--space-md); }
 
 
 /* ============================================================
+   FAQ  (native <details> accordion — no JS to open/close)
+   ============================================================ */
+.faq-list { max-width: 760px; margin: var(--space-xl) auto 0; display: grid; gap: var(--space-sm); }
+.faq-item {
+  border: 1px solid var(--border-on-light); border-radius: var(--radius-md);
+  background: var(--color-surface); padding: 0 var(--space-md);
+}
+.faq-q {
+  cursor: pointer; padding: var(--space-md) 0; list-style: none;
+  font-weight: 600; color: var(--color-primary);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-md);
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q::after { content: "+"; font-size: 1.4rem; line-height: 1; color: var(--color-gold-dark); }
+.faq-item[open] .faq-q::after { content: "\2212"; }
+.faq-a { padding: 0 0 var(--space-md); color: var(--color-text-muted); }
+.faq-a p:last-child { margin-bottom: 0; }
+
+
+/* ============================================================
    PRODUCT MODAL  (popup detail view)
    ============================================================ */
 .modal {
