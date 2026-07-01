@@ -1,0 +1,7 @@
+# SinghAaval Heritage — allow all crawlers, point them to the sitemap.
+User-agent: *
+Allow: /
+
+Sitemap: https://singhaaval.com/sitemap.xml
+
+

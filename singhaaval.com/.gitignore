@@ -1,0 +1,16 @@
+# Brainstorm visual companion (local-only mockups & server state)
+.superpowers/
+
+
+# Local editor / dev tooling (never deploy this)
+.claude/
+
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log
+_originals/
+
+
+
