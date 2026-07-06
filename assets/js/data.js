@@ -10,12 +10,16 @@
    ============================================================ */
 
 
+
+
 const SITE = {
   brand: {
     name: 'SinghAaval Heritage',
     tagline: 'Heritage and Excellence',
     logo: 'assets/images/logo.jpg',
   },
+
+
 
 
   // Contact details. Used in the footer and the contact page links.
@@ -26,11 +30,15 @@ const SITE = {
   },
 
 
+
+
   // Public website address + base location. Used for SEO and the structured
   // data (schema.org) that render.js adds for Google. Edit if these change.
   url: 'https://singhaaval.com',
   region: 'Rajasthan',
   country: 'IN',
+
+
 
 
   // Top menu. Add or remove a link here and it updates on every page.
@@ -42,10 +50,14 @@ const SITE = {
   ],
 
 
+
+
   social: {
     instagram: '#',
     facebook: '#',
   },
+
+
 
 
   // Button and section wording shown around the site. Change the text here and
@@ -61,6 +73,8 @@ const SITE = {
     footerContact:  'Get in touch',       // footer column title
   },
 };
+
+
 
 
 /* ------------------------------------------------------------
@@ -106,7 +120,7 @@ const PRODUCTS = [
     name: 'Pastel Patchwork Wall Hanging',
     image: 'assets/images/products/pastel-patchwork-wall-hanging.jpg',
     category: 'Home Furnishings',
-    description: 'Soft pastel patchwork wall hanging that adds warmth to any wall.',
+    description: 'Pastel cotton patchwork wall hanging, hand-pieced and hand-stitched panel by panel.',
     hs: '63049210',
   },
   {
@@ -124,6 +138,8 @@ const PRODUCTS = [
     hs: '63049210',
   },
 ];
+
+
 
 
 /* ============================================================
@@ -170,15 +186,15 @@ const PAGES = {
       heading: 'Why buyers choose us',
       background: 'cream',
       items: [
-        { title: 'Real Handwork', text: 'Made by hand by skilled Rajasthani artisans.' },
-        { title: 'Ready for Export', text: 'Clear HS codes. Steady quality. Reliable bulk supply.' },
-        { title: 'Fair and Natural', text: 'Fair work for craft families. Natural materials.' },
+        { title: 'Hand Embroidered', text: 'Banjara totes, jhola bags and Kutchi sling bags, stitched by hand — mirror work on select styles.' },
+        { title: 'Checked Before It Ships', text: 'Every piece is inspected, photographed and HS coded.' },
+        { title: 'Small Orders Welcome', text: 'Start with a trial order, then scale to bulk.' },
       ],
     },
     {
       type: 'quote',
       background: 'navy',
-      text: 'We carry stories, not just stock. Each thread keeps an old craft alive.',
+      text: "Kutchi mirror work takes a needle, thread and small glass, placed by hand and nowhere else. It's the stitch behind every Banjara and Kutchi piece we make.",
       attribution: 'SinghAaval Heritage',
     },
     {
@@ -188,6 +204,8 @@ const PAGES = {
       button: { label: 'Get a Quote', href: 'contact.html' },
     },
   ],
+
+
 
 
   /* ---------- PRODUCTS ---------- */
@@ -202,6 +220,8 @@ const PAGES = {
       type: 'products',
     },
   ],
+
+
 
 
   /* ---------- ABOUT ---------- */
@@ -228,9 +248,9 @@ const PAGES = {
       heading: 'How we work',
       background: 'cream',
       items: [
-        { title: 'Source', text: 'Trusted artisan groups. The best handmade pieces.' },
-        { title: 'Check', text: 'Each piece checked, photographed and HS coded.' },
-        { title: 'Deliver', text: 'Fast quotes. Bulk orders shipped with care.' },
+        { title: 'Source', text: 'Hand embroidery and mirror work from artisan groups in Rajasthan.' },
+        { title: 'Check', text: 'Each piece checked, photographed and HS coded before it ships.' },
+        { title: 'Deliver', text: 'Start with a trial order, scale to bulk. Custom colours and private label on request.' },
       ],
     },
     {
@@ -239,6 +259,8 @@ const PAGES = {
       caption: 'Rajasthan, the home of our craft.',
     },
   ],
+
+
 
 
   /* ---------- CONTACT  (quote form + direct contact, all in one) ---------- */
@@ -280,6 +302,12 @@ const PAGES = {
     },
   ],
 };
+
+
+
+
+
+
 
 
 
