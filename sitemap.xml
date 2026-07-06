@@ -1,4 +1,3 @@
-@'
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- List of pages for search engines. When you add a new page (a new .html shell),
      copy a <url> block below and change the <loc>. Update <lastmod> when a page changes. -->
@@ -28,5 +27,3 @@
     <priority>0.8</priority>
   </url>
 </urlset>
-'@ | Set-Content sitemap.xml -NoNewline
-
